@@ -35,10 +35,13 @@ public class GlobalExceptionHandler {
         String exMessage = ex.getMessage();
         log.error("异常信息：{}", exMessage);
         String[] msgSplit = exMessage.split(" ");
+        //判断是否为字段重复报错
         if (msgSplit[0].equals(ConditionConstant.WEATHER_DUPLICATE)) {
+            //判断重复的字段
             if (msgSplit[msgSplit.length - 1].equals(ConditionConstant.WEATHER_USERNAME_KEY_IN_EMPLOYEE)) {
                 return Result.error(MessageConstant.USERNAME + msgSplit[2] + MessageConstant.DUPLICATE_ENTRIE);
             }
+            return Result.error(msgSplit[2] + MessageConstant.DUPLICATE_ENTRIE);
         }
         return Result.error(MessageConstant.UNKNOWN_ERROR);
     }
