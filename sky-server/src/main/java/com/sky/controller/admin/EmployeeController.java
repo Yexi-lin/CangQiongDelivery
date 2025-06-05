@@ -88,10 +88,28 @@ public class EmployeeController {
         return Result.success();
     }
 
+    /**
+     * 员工分页查询
+     * @param dto
+     * @return
+     */
     @ApiOperation("员工分页查询 getEmpPage")
     @GetMapping("/page")
     public Result<PageResult> getEmpPage(EmployeePageQueryDTO dto){
         PageResult pageResult = employeeService.getEmpPage(dto);
         return Result.success(pageResult);
+    }
+
+    /**
+     * 设置员工账号启用状态
+     * @param status
+     * @param id
+     * @return
+     */
+    @ApiOperation("设置员工账号启用状态 setEnableStatus")
+    @PostMapping("/status/{status}")
+    public Result setEnableStatus(@PathVariable Integer status, Integer id){
+        employeeService.setEnableStatus(status, id);
+        return Result.success();
     }
 }
