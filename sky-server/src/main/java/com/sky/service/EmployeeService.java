@@ -33,14 +33,14 @@ public interface EmployeeService {
      * @param status
      * @param id
      */
-    void setEnableStatus(Integer status, Integer id);
+    void setEnableStatus(Integer status, Long id);
 
     /**
      * 根据id获取员工信息
      * @param id
      * @return
      */
-    Employee getEmployeeById(Integer id);
+    Employee getEmployeeById(Long id);
 
     /**
      * 更新员工信息

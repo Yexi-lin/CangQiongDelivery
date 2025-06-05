@@ -6,7 +6,6 @@ import com.sky.entity.Employee;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
-import org.apache.ibatis.annotations.Update;
 
 @Mapper
 public interface EmployeeMapper {
@@ -50,7 +49,7 @@ public interface EmployeeMapper {
      * @return
      */
     @Select("select * from employee where id = #{id}")
-    Employee getEmployeeById(Integer id);
+    Employee getEmployeeById(Long id);
 
     /**
      * 更新员工数据

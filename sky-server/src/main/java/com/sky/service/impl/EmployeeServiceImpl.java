@@ -114,10 +114,10 @@ public class EmployeeServiceImpl implements EmployeeService {
      * @param id
      */
     @Override
-    public void setEnableStatus(Integer status, Integer id) {
+    public void setEnableStatus(Integer status, Long id) {
         //封装为Employee对象,直接调用更新员工数据接口
         Employee employee = new Employee();
-        employee.setId((long)id);
+        employee.setId(id);
         employee.setStatus(status);
         employeeMapper.updateEmployee(employee);
     }
@@ -128,7 +128,7 @@ public class EmployeeServiceImpl implements EmployeeService {
      * @return
      */
     @Override
-    public Employee getEmployeeById(Integer id) {
+    public Employee getEmployeeById(Long id) {
         Employee employee = employeeMapper.getEmployeeById(id);
         return employee;
     }

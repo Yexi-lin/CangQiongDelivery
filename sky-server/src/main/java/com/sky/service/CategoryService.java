@@ -2,7 +2,10 @@ package com.sky.service;
 
 import com.sky.dto.CategoryDTO;
 import com.sky.dto.CategoryPageQueryDTO;
+import com.sky.entity.Category;
 import com.sky.result.PageResult;
+
+import java.util.List;
 
 /**
  * @Author:Yexi_lin
@@ -35,11 +38,18 @@ public interface CategoryService {
      * @param status
      * @param id
      */
-    void setCategoryEnableStatus(Integer status, Integer id);
+    void setCategoryEnableStatus(Integer status, Long id);
 
     /**
      * 根据Id删除分类
      * @param id
      */
-    void deleteCategoryById(Integer id);
+    void deleteCategoryById(Long id);
+
+    /**
+     * 根据类型查询分类 且只返回已启用的分类
+     * @param type
+     * @return
+     */
+    List<Category> getCategoryListByType(Integer type);
 }

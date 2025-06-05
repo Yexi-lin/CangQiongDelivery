@@ -87,11 +87,11 @@ public class CategoryServiceImpl implements CategoryService {
      * @param id
      */
     @Override
-    public void setCategoryEnableStatus(Integer status, Integer id) {
+    public void setCategoryEnableStatus(Integer status, Long id) {
         //封装为Category 以便调用修改分类的接口
         Category category = new Category();
         category.setStatus(status);
-        category.setId((long)id);
+        category.setId(id);
         categoryMapper.updateCategory(category);
     }
 
@@ -100,7 +100,18 @@ public class CategoryServiceImpl implements CategoryService {
      * @param id
      */
     @Override
-    public void deleteCategoryById(Integer id) {
+    public void deleteCategoryById(Long id) {
         categoryMapper.deleteCategoryById(id);
+    }
+
+    /**
+     * 根据类型查询分类 且只返回已启用的分类
+     * @param type
+     * @return
+     */
+    @Override
+    public List<Category> getCategoryListByType(Integer type) {
+        List<Category> list = categoryMapper.getCategoryListByType(type);
+        return list;
     }
 }

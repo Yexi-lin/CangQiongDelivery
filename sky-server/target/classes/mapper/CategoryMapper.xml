@@ -23,4 +23,11 @@
 #       按照字段顺序排序
         order by sort asc
      </select>
+    <select id="getCategoryListByType" resultType="com.sky.entity.Category">
+        select * from category
+        <where>
+            status = 1
+            <if test="type != null">and type = #{type}</if>
+        </where>
+    </select>
 </mapper>

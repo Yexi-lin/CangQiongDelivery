@@ -118,7 +118,7 @@ public class EmployeeController {
                                   Integer status,
                                   @RequestParam
                                   @ApiParam("员工id")
-                                  Integer id) {
+                                  Long id) {
         employeeService.setEnableStatus(status, id);
         return Result.success();
     }
@@ -132,7 +132,7 @@ public class EmployeeController {
     @GetMapping("/{id}")
     public Result getEmployeeById(@PathVariable
                                   @ApiParam("员工id")
-                                  Integer id) {
+                                  Long id) {
         Employee employee = employeeService.getEmployeeById(id);
         return Result.success(employee);
     }
