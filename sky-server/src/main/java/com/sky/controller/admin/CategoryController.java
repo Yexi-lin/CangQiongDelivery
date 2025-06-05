@@ -7,6 +7,7 @@ import com.sky.result.Result;
 import com.sky.service.CategoryService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -60,5 +61,23 @@ public class CategoryController {
     public Result updateCategory(@RequestBody CategoryDTO dto){
            categoryService.updateCategory(dto);
            return Result.success();
+    }
+
+    /**
+     * 设置分类启用状态
+     * @param status
+     * @param id
+     * @return
+     */
+    @ApiOperation("设置分类启用状态 setCategoryEnableStatus")
+    @PostMapping("/status/{status}")
+    public Result setCategoryEnableStatus(@PathVariable
+                                          @ApiParam("启用状态 1 启用 0 禁用")
+                                          Integer status,
+                                          @RequestParam
+                                          @ApiParam("分类id")
+                                          Integer id){
+        categoryService.setCategoryEnableStatus(status, id);
+        return Result.success();
     }
 }

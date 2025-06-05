@@ -80,4 +80,18 @@ public class CategoryServiceImpl implements CategoryService {
         category.setUpdateUser(BaseContext.getCurrentId());
         categoryMapper.updateCategory(category);
     }
+
+    /**
+     * 设置分类启用状态
+     * @param status
+     * @param id
+     */
+    @Override
+    public void setCategoryEnableStatus(Integer status, Integer id) {
+        //封装为Category 以便调用修改分类的接口
+        Category category = new Category();
+        category.setStatus(status);
+        category.setId((long)id);
+        categoryMapper.updateCategory(category);
+    }
 }

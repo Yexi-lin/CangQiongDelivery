@@ -30,4 +30,10 @@ public interface CategoryService {
      */
     void updateCategory(CategoryDTO dto);
 
+    /**
+     * 设置分类启用状态
+     * @param status
+     * @param id
+     */
+    void setCategoryEnableStatus(Integer status, Integer id);
 }
