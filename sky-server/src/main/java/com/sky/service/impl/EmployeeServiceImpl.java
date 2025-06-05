@@ -74,6 +74,7 @@ public class EmployeeServiceImpl implements EmployeeService {
         employee.setCreateTime(LocalDateTime.now());
         employee.setUpdateTime(LocalDateTime.now());
         //设置创建人和修改人
+        // TODO 获取创建人和修改人的ID
         employee.setCreateUser(10L);
         employee.setUpdateUser(10L);
 

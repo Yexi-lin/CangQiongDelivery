@@ -1,5 +1,6 @@
 package com.sky.handler;
 
+import com.sky.constant.ConditionConstant;
 import com.sky.constant.MessageConstant;
 import com.sky.exception.BaseException;
 import com.sky.result.Result;
@@ -34,8 +35,10 @@ public class GlobalExceptionHandler {
         String exMessage = ex.getMessage();
         log.error("异常信息：{}", exMessage);
         String[] msgSplit = exMessage.split(" ");
-        if (msgSplit[0].equals("Duplicate")) {
-            return Result.error(msgSplit[2] + MessageConstant.DUPLICATE_ENTRIE);
+        if (msgSplit[0].equals(ConditionConstant.WEATHER_DUPLICATE)) {
+            if (msgSplit[msgSplit.length - 1].equals(ConditionConstant.WEATHER_USERNAME_KEY_IN_EMPLOYEE)) {
+                return Result.error(MessageConstant.USERNAME + msgSplit[2] + MessageConstant.DUPLICATE_ENTRIE);
+            }
         }
         return Result.error(MessageConstant.UNKNOWN_ERROR);
     }
