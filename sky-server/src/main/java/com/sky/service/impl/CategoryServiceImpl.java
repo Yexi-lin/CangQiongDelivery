@@ -2,14 +2,19 @@ package com.sky.service.impl;
 
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
+import com.sky.constant.StatusConstant;
+import com.sky.context.BaseContext;
+import com.sky.dto.CategoryDTO;
 import com.sky.dto.CategoryPageQueryDTO;
 import com.sky.entity.Category;
 import com.sky.mapper.CategoryMapper;
 import com.sky.result.PageResult;
 import com.sky.service.CategoryService;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 /**
@@ -24,6 +29,7 @@ public class CategoryServiceImpl implements CategoryService {
 
     /**
      * 分类的分页查询
+     *
      * @param dto
      * @return
      */
@@ -37,5 +43,41 @@ public class CategoryServiceImpl implements CategoryService {
         long total = page.getTotal();
         List<Category> result = page.getResult();
         return new PageResult(total, result);
+    }
+
+    /**
+     * 新增分类
+     * @param dto
+     */
+    @Override
+    public void addCategory(CategoryDTO dto) {
+        //将传入的DTO转换为Category对象
+        Category category = new Category();
+        BeanUtils.copyProperties(dto, category);
+        //初始化分类状态
+        category.setStatus(StatusConstant.ENABLE);
+        //初始化创建时间 修改时间
+        category.setCreateTime(LocalDateTime.now());
+        category.setUpdateTime(LocalDateTime.now());
+        //初始化创建人 修改人
+        category.setCreateUser(BaseContext.getCurrentId());
+        category.setUpdateUser(BaseContext.getCurrentId());
+        //调用mapper传参
+        categoryMapper.addCategory(category);
+    }
+
+    /**
+     * 修改分类
+     * @param dto
+     */
+    @Override
+    public void updateCategory(CategoryDTO dto) {
+        //将传入的DTO转换为Category对象
+        Category category = new Category();
+        BeanUtils.copyProperties(dto, category);
+        //设置修改时间和修改人
+        category.setUpdateTime(LocalDateTime.now());
+        category.setUpdateUser(BaseContext.getCurrentId());
+        categoryMapper.updateCategory(category);
     }
 }

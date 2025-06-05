@@ -1,5 +1,6 @@
 package com.sky.service;
 
+import com.sky.dto.CategoryDTO;
 import com.sky.dto.CategoryPageQueryDTO;
 import com.sky.result.PageResult;
 
@@ -16,4 +17,17 @@ public interface CategoryService {
      * @return
      */
     PageResult getCategoryPage(CategoryPageQueryDTO dto);
+
+    /**
+     * 新增分类
+     * @param dto
+     */
+    void addCategory(CategoryDTO dto);
+
+    /**
+     * 修改分类
+     * @param dto
+     */
+    void updateCategory(CategoryDTO dto);
+
 }

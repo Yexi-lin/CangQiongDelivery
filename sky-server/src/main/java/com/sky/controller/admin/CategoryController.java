@@ -1,5 +1,6 @@
 package com.sky.controller.admin;
 
+import com.sky.dto.CategoryDTO;
 import com.sky.dto.CategoryPageQueryDTO;
 import com.sky.result.PageResult;
 import com.sky.result.Result;
@@ -7,9 +8,7 @@ import com.sky.service.CategoryService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * 分类管理
@@ -39,5 +38,27 @@ public class CategoryController {
         return Result.success(pageResult);
     }
 
+    /**
+     * 新增分类
+     * @param dto
+     * @return
+     */
+    @ApiOperation("新增分类 addCategory")
+    @PostMapping()
+    public Result addCategory(@RequestBody CategoryDTO dto){
+        categoryService.addCategory(dto);
+        return Result.success();
+    }
 
+    /**
+     * 修改分类
+     * @param dto
+     * @return
+     */
+    @ApiOperation("修改分类 updateCategory")
+    @PutMapping()
+    public Result updateCategory(@RequestBody CategoryDTO dto){
+           categoryService.updateCategory(dto);
+           return Result.success();
+    }
 }
