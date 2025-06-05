@@ -80,4 +80,18 @@ public class CategoryController {
         categoryService.setCategoryEnableStatus(status, id);
         return Result.success();
     }
+
+    /**
+     * 根据Id删除分类
+     * @param id
+     * @return
+     */
+    @ApiOperation("根据Id删除分类 deleteCategoryById")
+    @DeleteMapping()
+    public Result deleteCategoryById(@RequestParam
+                                     @ApiParam("分类id")
+                                     Integer id){
+        categoryService.deleteCategoryById(id);
+        return Result.success();
+    }
 }

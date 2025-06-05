@@ -36,4 +36,10 @@ public interface CategoryService {
      * @param id
      */
     void setCategoryEnableStatus(Integer status, Integer id);
+
+    /**
+     * 根据Id删除分类
+     * @param id
+     */
+    void deleteCategoryById(Integer id);
 }

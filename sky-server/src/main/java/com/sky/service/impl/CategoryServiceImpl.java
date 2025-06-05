@@ -54,8 +54,8 @@ public class CategoryServiceImpl implements CategoryService {
         //将传入的DTO转换为Category对象
         Category category = new Category();
         BeanUtils.copyProperties(dto, category);
-        //初始化分类状态
-        category.setStatus(StatusConstant.ENABLE);
+        //初始化分类状态 初始禁用
+        category.setStatus(StatusConstant.DISABLE);
         //初始化创建时间 修改时间
         category.setCreateTime(LocalDateTime.now());
         category.setUpdateTime(LocalDateTime.now());
@@ -93,5 +93,14 @@ public class CategoryServiceImpl implements CategoryService {
         category.setStatus(status);
         category.setId((long)id);
         categoryMapper.updateCategory(category);
+    }
+
+    /**
+     * 根据Id删除分类
+     * @param id
+     */
+    @Override
+    public void deleteCategoryById(Integer id) {
+        categoryMapper.deleteCategoryById(id);
     }
 }
