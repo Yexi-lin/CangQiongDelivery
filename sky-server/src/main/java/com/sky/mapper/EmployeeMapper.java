@@ -34,11 +34,27 @@ public interface EmployeeMapper {
      */
     Page<Employee> getEmpPage(EmployeePageQueryDTO dto);
 
+//    合并为员工数据更新
+//
+//    /**
+//     * 设置员工账号启用状态
+//     * @param status
+//     * @param id
+//     */
+//    @Update("update employee set status = #{status} where id = #{id}")
+//    void setEnableStatus(Integer status, Integer id);
+
     /**
-     * 设置员工账号启用状态
-     * @param status
+     * 根据Id查询员工
      * @param id
+     * @return
      */
-    @Update("update employee set status = #{status} where id = #{id}")
-    void setEnableStatus(Integer status, Integer id);
+    @Select("select * from employee where id = #{id}")
+    Employee getEmployeeById(Integer id);
+
+    /**
+     * 更新员工数据
+     * @param employee
+     */
+    void updateEmployee(Employee employee);
 }

@@ -67,6 +67,10 @@ public class EmployeeServiceImpl implements EmployeeService {
         return employee;
     }
 
+    /**
+     * 新增员工
+     * @param dto
+     */
     @Override
     public void addEmployee(EmployeeDTO dto) {
         Employee employee = new Employee();
@@ -87,6 +91,11 @@ public class EmployeeServiceImpl implements EmployeeService {
         employeeMapper.addEmployee(employee);
     }
 
+    /**
+     * 员工分页查询
+     * @param dto
+     * @return
+     */
     @Override
     public PageResult getEmpPage(EmployeePageQueryDTO dto) {
         //1.启用分页插件
@@ -99,9 +108,44 @@ public class EmployeeServiceImpl implements EmployeeService {
         return new PageResult(total, result);
     }
 
+    /**
+     * 设置员工账号启用状态
+     * @param status
+     * @param id
+     */
     @Override
     public void setEnableStatus(Integer status, Integer id) {
-        employeeMapper.setEnableStatus(status, id);
+        //封装为Employee对象,直接调用更新员工数据接口
+        Employee employee = new Employee();
+        employee.setId((long)id);
+        employee.setStatus(status);
+        employeeMapper.updateEmployee(employee);
+    }
+
+    /**
+     * 根据id获取员工信息
+     * @param id
+     * @return
+     */
+    @Override
+    public Employee getEmployeeById(Integer id) {
+        Employee employee = employeeMapper.getEmployeeById(id);
+        return employee;
+    }
+
+    /**
+     * 更新员工信息
+     * @param dto
+     */
+    @Override
+    public void updateEmployee(EmployeeDTO dto) {
+        //将传入的dto转换为Employee对象
+        Employee employee = new Employee();
+        BeanUtils.copyProperties(dto, employee);
+        //设置修改时间和修改人
+        employee.setUpdateTime(LocalDateTime.now());
+        employee.setUpdateUser(BaseContext.getCurrentId());
+        employeeMapper.updateEmployee(employee);
     }
 
 }

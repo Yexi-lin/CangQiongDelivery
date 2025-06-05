@@ -12,7 +12,9 @@ import com.sky.service.EmployeeService;
 import com.sky.utils.JwtUtil;
 import com.sky.vo.EmployeeLoginVO;
 import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiModelProperty;
 import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -70,7 +72,7 @@ public class EmployeeController {
      *
      * @return
      */
-    @ApiOperation("员工登录接口 logout")
+    @ApiOperation("员工登出接口 logout")
     @PostMapping("/logout")
     public Result<String> logout() {
         return Result.success();
@@ -78,38 +80,72 @@ public class EmployeeController {
 
     /**
      * 新增员工
+     *
      * @param dto
      * @return
      */
     @ApiOperation("新增员工接口 addEmployee")
     @PostMapping()
-    public Result addEmployee(@RequestBody EmployeeDTO dto){
+    public Result addEmployee(@RequestBody EmployeeDTO dto) {
         employeeService.addEmployee(dto);
         return Result.success();
     }
 
     /**
      * 员工分页查询
+     *
      * @param dto
      * @return
      */
     @ApiOperation("员工分页查询 getEmpPage")
     @GetMapping("/page")
-    public Result<PageResult> getEmpPage(EmployeePageQueryDTO dto){
+    public Result<PageResult> getEmpPage(EmployeePageQueryDTO dto) {
         PageResult pageResult = employeeService.getEmpPage(dto);
         return Result.success(pageResult);
     }
 
     /**
      * 设置员工账号启用状态
+     *
      * @param status
      * @param id
      * @return
      */
     @ApiOperation("设置员工账号启用状态 setEnableStatus")
     @PostMapping("/status/{status}")
-    public Result setEnableStatus(@PathVariable Integer status, Integer id){
+    public Result setEnableStatus(@PathVariable
+                                  @ApiParam("账号状态")
+                                  Integer status,
+                                  @RequestParam
+                                  @ApiParam("员工id")
+                                  Integer id) {
         employeeService.setEnableStatus(status, id);
+        return Result.success();
+    }
+
+    /**
+     * 根据员工id查询员工数据
+     * @param id
+     * @return
+     */
+    @ApiOperation("根据id查询员工 getEmployeeById")
+    @GetMapping("/{id}")
+    public Result getEmployeeById(@PathVariable
+                                  @ApiParam("员工id")
+                                  Integer id) {
+        Employee employee = employeeService.getEmployeeById(id);
+        return Result.success(employee);
+    }
+
+    /**
+     * 更新员工数据 (根据id)
+     * @param dto
+     * @return
+     */
+    @ApiOperation("更新员工数据接口 updateEmployee")
+    @PutMapping()
+    public Result updateEmployee(@RequestBody EmployeeDTO dto){
+        employeeService.updateEmployee(dto);
         return Result.success();
     }
 }
