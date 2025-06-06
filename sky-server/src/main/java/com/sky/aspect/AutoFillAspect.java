@@ -16,6 +16,7 @@ import java.lang.reflect.Method;
 import java.time.LocalDateTime;
 
 /**
+ * 实体类的新增及修改 时间操作人属性的自动装配
  * @Author:Yexi_lin
  * @Date: 2025/06/06 09:15
  * @Description:

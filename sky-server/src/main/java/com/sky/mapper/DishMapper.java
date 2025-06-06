@@ -1,5 +1,8 @@
 package com.sky.mapper;
 
+import com.sky.annotation.AutoFill;
+import com.sky.entity.Dish;
+import com.sky.enumeration.OperationType;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
 
@@ -18,4 +21,7 @@ public interface DishMapper {
      */
     @Select("select exists(select null from dish where category_id = #{id})")
     boolean hasRelatedByDish(Long id);
+
+    @AutoFill(OperationType.INSERT)
+    void addDish(Dish dish);
 }

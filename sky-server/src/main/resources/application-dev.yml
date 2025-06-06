@@ -6,3 +6,8 @@ sky:
     database: sky_take_out
     username: root
     password: root
+  alioss:
+    access-key-id: KEY_ID_EXAMPLE
+    access-key-secret: KEY_SECRET_EXAMPLE
+    endpoint: oss-cn-example.aliyuncs.com
+    bucket-name: bucket-name
