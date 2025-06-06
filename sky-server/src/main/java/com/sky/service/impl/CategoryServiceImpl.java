@@ -66,12 +66,13 @@ public class CategoryServiceImpl implements CategoryService {
         BeanUtils.copyProperties(dto, category);
         //初始化分类状态 初始禁用
         category.setStatus(StatusConstant.DISABLE);
+        //时间和操作人员数据填充改为AOP实现
         //初始化创建时间 修改时间
-        category.setCreateTime(LocalDateTime.now());
-        category.setUpdateTime(LocalDateTime.now());
+//        category.setCreateTime(LocalDateTime.now());
+//        category.setUpdateTime(LocalDateTime.now());
         //初始化创建人 修改人
-        category.setCreateUser(BaseContext.getCurrentId());
-        category.setUpdateUser(BaseContext.getCurrentId());
+//        category.setCreateUser(BaseContext.getCurrentId());
+//        category.setUpdateUser(BaseContext.getCurrentId());
         //调用mapper传参
         categoryMapper.addCategory(category);
     }
@@ -87,8 +88,9 @@ public class CategoryServiceImpl implements CategoryService {
         Category category = new Category();
         BeanUtils.copyProperties(dto, category);
         //设置修改时间和修改人
-        category.setUpdateTime(LocalDateTime.now());
-        category.setUpdateUser(BaseContext.getCurrentId());
+        //已改为AOP实现
+//        category.setUpdateTime(LocalDateTime.now());
+//        category.setUpdateUser(BaseContext.getCurrentId());
         categoryMapper.updateCategory(category);
     }
 
