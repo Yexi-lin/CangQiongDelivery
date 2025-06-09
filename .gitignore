@@ -1,1 +1,8 @@
+/target/
 *.class
+# 以下类型配置文件作为本地配置 不上传
+*.properties
+*.yaml
+/sky-server/target/
+/sky-common/target/
+/sky-pojo/target/

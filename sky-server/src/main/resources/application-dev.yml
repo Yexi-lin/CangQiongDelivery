@@ -1,3 +1,4 @@
+
 sky:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
@@ -7,7 +8,8 @@ sky:
     username: root
     password: root
   alioss:
-    access-key-id: KEY_ID_EXAMPLE
-    access-key-secret: KEY_SECRET_EXAMPLE
-    endpoint: oss-cn-example.aliyuncs.com
-    bucket-name: bucket-name
+# 改为环境变量方式获取access key配置 更安全
+#    access-key-id: KEY_ID_EXAMPLE
+#    access-key-secret: KEY_SECRET_EXAMPLE
+#    endpoint: oss-cn-example.aliyuncs.com
+#    bucket-name: bucket-name

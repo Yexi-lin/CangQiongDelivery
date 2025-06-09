@@ -1,11 +1,16 @@
 package com.sky.service.impl;
 
+import com.github.pagehelper.Page;
+import com.github.pagehelper.PageHelper;
 import com.sky.dto.DishDTO;
+import com.sky.dto.DishPageQueryDTO;
 import com.sky.entity.Dish;
 import com.sky.entity.DishFlavor;
 import com.sky.mapper.DishFlavorMapper;
 import com.sky.mapper.DishMapper;
+import com.sky.result.PageResult;
 import com.sky.service.DishService;
+import com.sky.vo.DishVO;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -50,5 +55,17 @@ public class DishServiceImpl implements DishService {
             //批量新增菜品口味
             dishFlavorMapper.addDishFlavors(flavors);
         }
+    }
+
+    @Override
+    public PageResult getDishPage(DishPageQueryDTO dishPageQueryDTO) {
+        //1.启用PageHelper
+        PageHelper.startPage(dishPageQueryDTO.getPage(), dishPageQueryDTO.getPageSize());
+        //2.查询并将结果封装为Page
+        Page<DishVO> page = dishMapper.getDishPage(dishPageQueryDTO);//后绪步骤实现
+        //将page中的表和总数封装为PageResult并返回
+        List<DishVO> result = page.getResult();
+        long total = page.getTotal();
+        return new PageResult(total, result);
     }
 }

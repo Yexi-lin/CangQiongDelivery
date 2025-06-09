@@ -25,5 +25,8 @@ public class MessageConstant {
     public static final String ORDER_NOT_FOUND = "订单不存在";
     public static final String DUPLICATE_ENTRIE = "已存在";
     public static final String USERNAME = "账号名(用户名)";
+    public static final String UPLOAD_REJECTED = "文件上传被拒绝";
+    public static final String OSS_UNACCESSABLE = "服务器访问异常";
+//    public static final String EXAMPLE = "";
 
 }
